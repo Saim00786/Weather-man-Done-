@@ -11,26 +11,22 @@ if !File.directory?(path)
   exit
 end
 
-if !year_or_month.split('/')[1].to_i.between?(1,12)
-  puts "Enter a month between 1 - 12"
-  exit
-end
+
+
 
 w1 = Weatherman.new
 
 files = w1.get_filenames(path,year_or_month)
-month = year_or_month.split('/')[1]
-filename = files.select { |file| file.include? Date::MONTHNAMES[month.to_i][0..2] }[0]
+
+
+
 
 if files.empty?
   puts 'Year does not exist.'
   exit
 end
 
-if filename.nil?
-  puts 'Month data not available.'
-  exit
-end
+
 
 
 
@@ -44,6 +40,17 @@ if mode == '-e'
 
 elsif mode == '-a'
 
+  if !year_or_month.split('/')[1].to_i.between?(1,12)
+    puts "Enter a month between 1 - 12"
+    exit
+  end
+  month = year_or_month.split('/')[1]
+  filename = files.select { |file| file.include? Date::MONTHNAMES[month.to_i][0..2] }[0]
+  if filename.nil?
+    puts 'Month data not available.'
+    exit
+  end
+
   tmp = w1.mode_a(filename, path)
 
   puts "Highest Average: #{tmp[0]}C"
@@ -51,6 +58,18 @@ elsif mode == '-a'
   puts "Average Humidity: #{tmp[2]}%"
 
 elsif mode == '-c'
+
+  if !year_or_month.split('/')[1].to_i.between?(1,12)
+    puts "Enter a month between 1 - 12"
+    exit
+  end
+  month = year_or_month.split('/')[1]
+  filename = files.select { |file| file.include? Date::MONTHNAMES[month.to_i][0..2] }[0]
+  if filename.nil?
+    puts 'Month data not available.'
+    exit
+  end
+
   year, month = year_or_month.split('/')
   month_name = Date::MONTHNAMES[month.to_i]
   puts "#{month_name} #{year}"
