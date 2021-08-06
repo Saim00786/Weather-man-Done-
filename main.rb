@@ -11,24 +11,14 @@ if !File.directory?(path)
   exit
 end
 
-
-
-
 w1 = Weatherman.new
 
 files = w1.get_filenames(path,year_or_month)
-
-
-
 
 if files.empty?
   puts 'Year does not exist.'
   exit
 end
-
-
-
-
 
 if mode == '-e'
 
