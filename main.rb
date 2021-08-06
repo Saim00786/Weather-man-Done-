@@ -24,9 +24,9 @@ if mode == '-e'
 
   max_temp, max_date, min_temp, min_date, max_humidity, max_humidity_date = w1.mode_e(files, path)
 
-  puts "Highest: #{max_temp}C on #{Date.parse(max_date).strftime('%A')} #{Date.parse(max_date).day} "
-  puts "Lowest: #{min_temp}C on #{Date.parse(min_date).strftime('%A')} #{Date.parse(min_date).day} "
-  puts "Humid: #{max_humidity}% on #{Date.parse(max_humidity_date).strftime('%A')} #{Date.parse(max_humidity_date).day} "
+  puts "Highest: #{max_temp}C on #{Date::MONTHNAMES[Date.parse(max_date).month]} #{Date.parse(max_date).day} "
+  puts "Lowest: #{min_temp}C on #{Date::MONTHNAMES[Date.parse(min_date).month]} #{Date.parse(min_date).day} "
+  puts "Humid: #{max_humidity}% on #{Date::MONTHNAMES[Date.parse(max_humidity_date).month]} #{Date.parse(max_humidity_date).day} "
 
 elsif mode == '-a'
 
